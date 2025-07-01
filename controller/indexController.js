@@ -7,5 +7,6 @@ async function getAllGames(req,res){
 
 }
 
-module.exports = getAllGames;
-userController = require('../controller/indexController');
+module.exports = {
+    getAllGames
+};
