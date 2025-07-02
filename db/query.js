@@ -11,7 +11,7 @@ async function getGame(id){
 }
 
 async function getAllDevelopers(){
-    const {rows} = await pool.query('SELECT * FROM ')
+    const {rows} = await pool.query('SELECT * FROM developers ')
 }
 module.exports = {
     getAllGames,
