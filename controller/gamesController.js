@@ -25,7 +25,19 @@ async function updateGame(req, res) {
     // TODO: Implement this function
     res.status(501).send('updateGame not implemented yet');
 }
+async function postGame(req,res){
+    const {title}= req.body;
+    const gameId = await db.insertGame({title})
+    for( const genre of genres){
+        const genreId = await db.findOrCreateGenre(genre);
+        await db.linkGameGenre(game_id, genre_id);
+    }
 
+    for (const developer of developers ){
+        const devId = await db.findOrCreateDev(developer);
+        await db.linkGameDeveloper(game_id, dev_id);
+    }
+}
 
 module.exports = {
     getGame,
