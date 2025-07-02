@@ -52,13 +52,13 @@ async function findOrCreateDeveloper(name) {
 
 async function linkGameGenre(gameId, genreId){
         await pool.query(
-            `INSERT INTO games_genres (game_id,genre_id) VALUES ($1, $2)`, [gameId,genreId]
+            `INSERT INTO game_genres (game_id,genre_id) VALUES ($1, $2)`, [gameId,genreId]
         );
 }
 
 async function linkGameDeveloper(gameId, developerId){
         await pool.query(
-            `INSERT INTO games_developers (game_id,developer_id) VALUES ($1, $2)`, [gameId,developerId]
+            `INSERT INTO game_developers (game_id,developer_id) VALUES ($1, $2)`, [gameId,developerId]
         );
 }
 
