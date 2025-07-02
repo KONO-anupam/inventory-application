@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Game</title>
+</head>
+<body>
+    <h1>Add a New Game</h1>
+    <form action="/games" method="POST">
+        <label>Title: <input type="text" name="title" required></label><br>
+        <label>Genres (comma-separated): <input type="text" name="genres" required></label><br>
+        <label>Developers (comma-separated): <input type="text" name="developers" required></label><br>
+        <button type="submit">Add Game</button>
+    </form>
+</body>
+</html>

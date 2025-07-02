@@ -14,7 +14,7 @@ async function getAllDevelopers(){
     const {rows} = await pool.query('SELECT * FROM developers ');
     return rows;
 }
-async function insertGame(){
+async function insertGame({title}){
     const {rows} = await pool.query(
         `INSERT INTO games (title)
         VALUES $1 RETURNING id`, [title]  
