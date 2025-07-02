@@ -7,7 +7,7 @@ async function getGame(req,res){
         if(!game){
             return res.send.status(404).send('game not found')
         }
-        res.send('Your Game is: '+game);
+        res.send('Your Game is: '+game.title);
     }
     catch(error){
          console.error('Error fetching game:', error);
@@ -16,8 +16,20 @@ async function getGame(req,res){
     }
 }
 
+async function postGame(req, res) {
+    // TODO: Implement this function
+    res.status(501).send('postGame not implemented yet');
+}
+
+async function updateGame(req, res) {
+    // TODO: Implement this function
+    res.status(501).send('updateGame not implemented yet');
+}
 
 
 module.exports = {
-    getGame
+    getGame,
+    postGame,
+    updateGame
+
 }
