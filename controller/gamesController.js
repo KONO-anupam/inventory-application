@@ -16,10 +16,7 @@ async function getGame(req,res){
     }
 }
 
-async function postGame(req, res) {
-    // TODO: Implement this function
-    res.status(501).send('postGame not implemented yet');
-}
+
 
 async function updateGame(req, res) {
     // TODO: Implement this function

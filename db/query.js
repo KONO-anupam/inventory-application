@@ -17,7 +17,7 @@ async function getAllDevelopers(){
 async function insertGame({title}){
     const {rows} = await pool.query(
         `INSERT INTO games (title)
-        VALUES $1 RETURNING id`, [title]  
+        VALUES ($1) RETURNING id`, [title]  
     );
 }
 async function findOrCreateGenre(genre){
