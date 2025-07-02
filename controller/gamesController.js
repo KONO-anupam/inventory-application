@@ -22,17 +22,43 @@ async function updateGame(req, res) {
     // TODO: Implement this function
     res.status(501).send('updateGame not implemented yet');
 }
-async function postGame(req,res){
-    const {title}= req.body;
-    const gameId = await db.insertGame({title})
-    for( const genre of genres){
-        const genreId = await db.findOrCreateGenre(genre);
-        await db.linkGameGenre(game_id, genre_id);
-    }
 
-    for (const developer of developers ){
-        const devId = await db.findOrCreateDev(developer);
-        await db.linkGameDeveloper(game_id, dev_id);
+async function postGame(req, res) {
+    try {
+        console.log('Request body:', req.body); // Debug log
+        
+        const { title, genres, developers } = req.body;
+        
+        if (!title) {
+            return res.status(400).send('Title is required');
+        }
+
+        // Insert the game first
+        const gameId = await db.insertGame({ title });
+        console.log('Game inserted with ID:', gameId);
+
+        // Handle genres if provided (from comma-separated string)
+        if (genres && genres.trim()) {
+            const genreArray = genres.split(',').map(g => g.trim()).filter(g => g);
+            for (const genre of genreArray) {
+                const genreId = await db.findOrCreateGenre(genre);
+                await db.linkGameGenre(gameId, genreId);
+            }
+        }
+
+        // Handle developers if provided (from comma-separated string)
+        if (developers && developers.trim()) {
+            const developerArray = developers.split(',').map(d => d.trim()).filter(d => d);
+            for (const developer of developerArray) {
+                const devId = await db.findOrCreateDeveloper(developer);
+                await db.linkGameDeveloper(gameId, devId);
+            }
+        }
+
+        res.send(`Game "${title}" added successfully with ID: ${gameId}`);
+    } catch (error) {
+        console.error('Error adding game:', error);
+        res.status(500).send('Error adding game: ' + error.message);
     }
 }
 
